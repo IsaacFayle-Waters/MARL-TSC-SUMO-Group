@@ -1,0 +1,69 @@
+{
+  "simulation_metadata": {
+    "model_name": "MARL SGAT",
+    "objective": "Maximize long-term cumulative reward across the entire road network",
+    "scenario": "5x5 traffic network grid (25 intersections)",
+    "datasets": ["Synthetic dataset (homogeneous)", "Real dataset (heterogeneous)"]
+  },
+  "execution_parameters": {
+    "num_episodes": 100,
+    "episode_duration_seconds": 3600,
+    "convergent_algebra_generations": 126,
+    "average_training_time_per_generation_seconds": 99.5
+  },
+  "network_parameters": {
+    "num_intersections": 25,
+    "agents_per_intersection": 1,
+    "intersection_types": {
+      "standard": "J_i-way intersection (e.g., 4-way)",
+      "entrances": "Z_j lanes per entrance",
+      "exits": "Z_j lanes per exit"
+    },
+    "signal_timing": {
+      "num_phases": "P_i",
+      "phase_sequence": "Constant"
+    }
+  },
+  "agent_state_space": {
+    "individual_state_metrics": [
+      "traffic_density (n_vehicles / lane_length)",
+      "queuing_density (n_queued_vehicles / lane_length)",
+      "remaining_exit_space (1 - n_vehicles / max_capacity)",
+      "current_phase_index"
+    ],
+    "global_network_metrics": [
+      "concatenated_individual_states",
+      "network_inflow (n_in_t)",
+      "network_outflow (n_out_t)"
+    ]
+  },
+  "action_space": {
+    "method": "Phase duration adjustment",
+    "candidate_operations": {
+      "0": "Maintain current green time",
+      "1": "Extend (delta_t_tilde)",
+      "2": "Reduce (delta_t_tilde)"
+    },
+    "constraints": {
+      "min_green_time": "g_i_min",
+      "max_green_time": "g_i_max",
+      "reassessment_interval": "delta_t"
+    }
+  },
+  "reward_system": {
+    "metrics": [
+      "average_delay (total stop time / stopped vehicles)",
+      "throughput (vehicles leaving stop line during peak)",
+      "heterogeneous_correlation_index"
+    ],
+    "weights": {
+      "w_delay": "Negative weight",
+      "w_throughput": "Positive weight"
+    }
+  },
+  "hyperparameters": {
+    "discount_factor_gamma": 0.95,
+    "scaling_factor_q": "Used for variable range unification",
+    "max_reward_period_c": "Maximum period for cumulative reward calculation"
+  }
+}
