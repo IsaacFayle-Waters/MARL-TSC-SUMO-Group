@@ -1,6 +1,13 @@
+"""
+Utility functions for calculating traffic performance metrics via TraCI.
+"""
 import traci
 
 def average_delay():
+    """
+    Calculates the average waiting time (delay) across all vehicles currently in the simulation.
+    Waiting time is defined by SUMO as speed < 0.1 m/s.
+    """
     veh_ids = traci.vehicle.getIDList()
 
     if len(veh_ids) == 0:
