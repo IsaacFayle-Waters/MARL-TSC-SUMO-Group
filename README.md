@@ -11,6 +11,12 @@ The goal is to maximize long-term cumulative reward (minimizing delay and maximi
 - **Phase Duration Adjustment**: Agents adjust green light durations (+4s / -4s) at 12-second reassessment intervals, rather than simple discrete switching.
 - **Dynamic Parsing**: The environment automatically extracts physical lane counts and distances from the SUMO `network.net.xml` file.
 
+## AI-Assisted Development
+This implementation was developed with the assistance of an **AI Agent in Google Colab**. The AI played a central role in:
+- **Paper Analysis**: Extracting and interpreting specific mathematical constraints and experimental settings from the original research PDF.
+- **Algorithmic Implementation**: Translating the 'Heterogeneous Correlation Index' formulas (Equations 6, 7, and 8) into functional Python logic within the PettingZoo environment.
+- **Environment Orchestration**: Automating the scaling of the network from 3x3 to 5x5 and managing the dynamic synchronization of SUMO IDs across the project files.
+
 ## Usage Instructions
 1. **Environment Setup**: Open the `experiment_reprod_bie_et_al.ipynb` notebook in Google Colab.
 2. **Initialization**: Run the setup cells to clone this repository and install SUMO and PettingZoo dependencies.
