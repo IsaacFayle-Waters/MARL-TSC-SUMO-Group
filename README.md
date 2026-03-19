@@ -27,3 +27,9 @@ This implementation was developed with the assistance of an **AI Agent in Google
 - **Environment**: Fully aligned with MARL SGAT Section 4.1.
 - **Scale**: 25 agents (5x5 grid).
 - **Metrics**: Integrated average delay, throughput, and spatiotemporal correlation rewards.
+
+## References
+Bie, Y., Ji, Y. and Ma, D. (2024) Multi-agent Deep Reinforcement Learning collaborative Traffic 
+Signal Control method considering intersection heterogeneity. *Transportation Research Part C: 
+Emerging Technologies* [online]. 164, p. 104663. Available from: 
+https://www.sciencedirect.com/science/article/abs/pii/S0968090X24001840.
